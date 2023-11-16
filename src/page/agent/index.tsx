@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useFetch";
 import { agentRequest } from "../../service/agents";
 import { ImageColoring } from "./styled";
+import Banner from "./components/Banner";
 
 const Agent: React.FC = () => {
   const { uuid } = useParams();
@@ -12,6 +13,7 @@ const Agent: React.FC = () => {
   const color = `#${agent?.backgroundGradientColors[0]}`;
   return (
     <section>
+      <Banner agent={agent} color={color}/>
       <div>
         <h1 style={{ color }}>{agent?.displayName}</h1>
         <p>{agent?.description}</p>
