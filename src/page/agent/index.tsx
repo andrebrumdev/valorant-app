@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useFetch";
 import { agentRequest } from "../../service/agents";
-import tinycolor from "tinycolor2";
 import { ImageColoring } from "./styled";
 
 const Agent: React.FC = () => {
@@ -11,7 +10,6 @@ const Agent: React.FC = () => {
   const { data: agentResponse } = useAxios<Response<Agent>>(url, params);
   const agent = agentResponse?.data;
   const color = `#${agent?.backgroundGradientColors[0]}`;
-  const HSL = tinycolor(color).toHsl();
   return (
     <section>
       <div>
