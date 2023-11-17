@@ -1,20 +1,10 @@
-const HOST = "https://valorant-api.com/v1";
+import agents from "../database/agents.json";
+// const HOST = "https://valorant-api.com/v1";
 
-const language = "pt-BR";
-export const agentsRequest = {
-  url: `${HOST}/agents`,
-  params: {
-    language,
-    isPlayableCharacter: true,
-  },
-};
+export function getAgents(): Agent[] {
+  return agents as Agent[];
+}
 
-export function agentRequest(uuid:string) {
-  return {
-    url: `${HOST}/agents/${uuid}`,
-    params: {
-      language,
-      isPlayableCharacter: true,
-    },
-  };
+export function getAgent(uuid?: string): Agent | null {
+  return agents.find(agent=>agent.uuid === uuid) as Agent;
 }

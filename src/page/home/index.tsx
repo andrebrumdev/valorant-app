@@ -1,23 +1,19 @@
 import React from "react";
-import useAxios from "../../hooks/useFetch";
-import { agentsRequest } from "../../service/agents";
-import "./style.css";
 import AgentCard from "./components/Agents/agents";
+import { Grid } from "./styled";
+import { useLoaderData } from "react-router-dom";
 
 const Home: React.FC = () => {
-  const { data: agentsResponse } = useAxios<Response<Agent[]>>(
-    agentsRequest.url,
-    agentsRequest.params
-  );
-
+  const agents = useLoaderData() as Agent[];
+  console.log(agents);
   return (
     <section className="agent">
       <h1>Agentes</h1>
-      <div className="grid">
-        {agentsResponse?.data.map((agent) => {
+      <Grid>
+        {agents?.map((agent) => {
           return <AgentCard agent={agent} />;
         })}
-      </div>
+      </Grid>
     </section>
   );
 };

@@ -8,8 +8,9 @@ const AgentCard: React.FC<TAgentCard> = ({ agent }) => {
   function getImage() {
     return agent.fullPortrait || agent.bustPortrait || agent.fullPortraitV2;
   }
+  const redirectLink = `${agent.uuid}`;
   return (
-    <Card colors={agent.backgroundGradientColors} to={`/agent/${agent.uuid}`}>
+    <Card colors={agent.backgroundGradientColors} to={redirectLink} end>
       <div className="bg">
         <img src={agent.background} />
       </div>

@@ -1,15 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import useAxios from "../../hooks/useFetch";
-import { agentRequest } from "../../service/agents";
-import { ImageColoring } from "./styled";
+import { useLoaderData } from "react-router-dom";
 import Banner from "./components/Banner";
+import { ImageColoring } from "./styled";
 
 const Agent: React.FC = () => {
-  const { uuid } = useParams();
-  const { url, params } = agentRequest(uuid || "");
-  const { data: agentResponse } = useAxios<Response<Agent>>(url, params);
-  const agent = agentResponse?.data;
+  const agent = useLoaderData() as Agent;
   const color = `#${agent?.backgroundGradientColors[0]}`;
   return (
     <section>
@@ -55,6 +50,7 @@ const Agent: React.FC = () => {
       </div>
     </section>
   );
+  return <></>
 };
 
 export default Agent;
